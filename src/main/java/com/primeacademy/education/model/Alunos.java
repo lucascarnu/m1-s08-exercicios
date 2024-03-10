@@ -12,14 +12,14 @@ import java.util.Date;
 // O atributo ID não deve possuir um método "set".
 
 @Data
-public class Aluno {
+public class Alunos {
 
     @Setter(AccessLevel.NONE)private Integer id;
     private String nome;
     private Date dataNascimento;
     private static Integer proximoId = 1;
 
-    public Aluno(String nome, Date dataNascimento) {
+    public Alunos(String nome, Date dataNascimento) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.id = sequenciadorId();
