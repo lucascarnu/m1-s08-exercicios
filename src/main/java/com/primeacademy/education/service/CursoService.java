@@ -9,15 +9,19 @@ import java.util.List;
 @Service
 public class CursoService {
 
-    private void validarCampoObrigatorio(Object valor, String mensagemErro) throws Exception {
-        if (valor == null) {
+    private void validarCampoObrigatorio(String valor, String mensagemErro) throws Exception {
+        if (valor == null || valor.isBlank()) {
             throw new Exception(mensagemErro);
         }
     }
 
     private boolean validar(Curso curso) throws Exception {
         validarCampoObrigatorio(curso.getNome(), "Nome é obrigatório");
-        validarCampoObrigatorio(curso.getCargaHoraria(), "Carga horária é obrigatório");
+        validarCampoObrigatorio(String.valueOf(curso.getDescricao()), "Descrição é obrigatória");
+
+        if (curso.getCargaHoraria() == null || curso.getCargaHoraria() <= 30) {
+            throw new Exception("Carga horária não informada ou menor que 0");
+        }
 
         return true;
     }
