@@ -14,7 +14,9 @@ public class Curso {
 
     //Utilize um atributo estático e privado para o armazenamento dos alunos cadastrados
     //Getter adicionado à lista. Utilizado pelo método buscarTodos()
-    @Getter private static final List<Curso> CURSOS_CADASTRADOS = new ArrayList<>();
+    @Getter
+    @Setter(AccessLevel.NONE)
+    private static final List<Curso> CURSOS_CADASTRADOS = new ArrayList<>();
 
     @Setter(AccessLevel.NONE)private Integer id;
     private String nome;
@@ -22,6 +24,10 @@ public class Curso {
     private Integer cargaHoraria;
     // Experimentando outra forma de sequenciar Ids
     private static final AtomicInteger proximoId = new AtomicInteger(1);
+
+    @Setter(AccessLevel.NONE)
+    private List<Aluno> alunos = new ArrayList<>();
+
 
     public Curso(String nome, String descricao, Integer cargaHoraria) {
         this.nome = nome;
@@ -39,5 +45,18 @@ public class Curso {
         curso.id = sequenciadorId();
         CURSOS_CADASTRADOS.add(curso);
         return curso;
+    }
+
+    public static void adicionarAluno(Curso curso, Aluno aluno) {
+        curso.getAlunos().add(aluno);
+    }
+
+    public static Curso buscarPorId(Integer id) throws Exception {
+        for (Curso curso : CURSOS_CADASTRADOS) {
+            if (curso.getId().equals(id)) {
+                return curso;
+            }
+        }
+        throw new Exception("Curso não encontrado");
     }
 }

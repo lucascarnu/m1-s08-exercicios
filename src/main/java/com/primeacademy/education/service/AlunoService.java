@@ -31,5 +31,10 @@ public class AlunoService {
     public static List<Aluno> buscarTodos() {
         return Aluno.getALUNOS_CADASTRADOS();
     }
+
+    public Aluno buscarPorId(Integer id) throws Exception {
+        return Aluno.buscarPorId(id);
+    }
+
 }
 

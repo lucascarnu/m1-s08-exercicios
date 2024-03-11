@@ -41,4 +41,13 @@ public class Aluno {
         ALUNOS_CADASTRADOS.add(aluno);
         return aluno;
     }
+    // Método que busca aluno por id
+    public static Aluno buscarPorId(Integer id) throws Exception {
+        for (Aluno aluno : ALUNOS_CADASTRADOS) {
+            if (aluno.getId().equals(id)) {
+                return aluno;
+            }
+        }
+        throw new Exception("Aluno não encontrado");
+    }
 }

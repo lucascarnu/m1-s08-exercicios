@@ -32,4 +32,10 @@ public class AlunoController {
     public List<Aluno> get() {
         return alunoService.buscarTodos();
     }
+
+    /** Busca por ID */
+    @GetMapping("{id}")
+    public Aluno getId(@PathVariable Integer id) throws Exception {
+        return alunoService.buscarPorId(id);
+    }
 }

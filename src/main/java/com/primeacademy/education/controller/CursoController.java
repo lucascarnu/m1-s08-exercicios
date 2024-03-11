@@ -1,5 +1,6 @@
 package com.primeacademy.education.controller;
 
+import com.primeacademy.education.model.Aluno;
 import com.primeacademy.education.model.Curso;
 import com.primeacademy.education.service.CursoService;
 import org.springframework.web.bind.annotation.*;
@@ -32,4 +33,22 @@ public class CursoController {
     public List<Curso> get() {
         return cursoService.buscarTodos();
     }
+
+    /**
+     * Adicionar aluno a um curso
+     */
+    @PostMapping("{id}/add-aluno")
+    public Curso postAluno(@PathVariable Integer id, @RequestBody Aluno aluno) throws Exception {
+        return cursoService.adicionarAluno(id, aluno.getId());
+    }
+
+    /**
+     *  Busca por ID
+     */
+    @GetMapping("{id}")
+    public Curso getId(@PathVariable Integer id) throws Exception {
+        return cursoService.buscarPorId(id);
+    }
+
+
 }

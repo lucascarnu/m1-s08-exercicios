@@ -9,6 +9,12 @@ import java.util.List;
 @Service
 public class CursoService {
 
+    private final AlunoService alunoService;
+
+    public CursoService(AlunoService alunoService) {
+        this.alunoService = alunoService;
+    }
+
     private void validarCampoObrigatorio(String valor, String mensagemErro) throws Exception {
         if (valor == null || valor.isBlank()) {
             throw new Exception(mensagemErro);
@@ -33,8 +39,19 @@ public class CursoService {
         return null;
     }
 
+    public Curso buscarPorId(Integer id) throws Exception {
+        return Curso.buscarPorId(id);
+    }
+
     public static List<Curso> buscarTodos() {
         return Curso.getCURSOS_CADASTRADOS();
+    }
+
+    public Curso adicionarAluno(Integer id, Integer alunoId) throws Exception {
+        Curso curso = buscarPorId(id);
+        Aluno aluno = alunoService.buscarPorId(alunoId);
+        Curso.adicionarAluno(curso, aluno);
+        return curso;
     }
 }
 
