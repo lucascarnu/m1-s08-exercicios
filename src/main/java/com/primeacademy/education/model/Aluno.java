@@ -1,5 +1,6 @@
 package com.primeacademy.education.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
@@ -19,14 +20,14 @@ public class Aluno {
     @Getter private static final List<Aluno> ALUNOS_CADASTRADOS = new ArrayList<>();
 
     private String nome;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dataNascimento;
     private static Integer proximoId = 1;
 
-    // Construtor (cada aluno instanciado é cadastrado com um Id novo
+    //Construtor
     public Aluno(String nome, Date dataNascimento) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.id = sequenciadorId();
     }
 
     // Método sequenciador de Id
@@ -36,10 +37,8 @@ public class Aluno {
 
     // Método responsável pela inclusão
     public static Aluno inserir(Aluno aluno) {
-        aluno.id = proximoId++;
+        aluno.id = sequenciadorId();
         ALUNOS_CADASTRADOS.add(aluno);
         return aluno;
     }
-
-
 }

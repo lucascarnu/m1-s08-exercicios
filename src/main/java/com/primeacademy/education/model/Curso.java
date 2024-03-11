@@ -24,7 +24,6 @@ public class Curso {
     private static final AtomicInteger proximoId = new AtomicInteger(1);
 
     public Curso(String nome, String descricao, Integer cargaHoraria) {
-        this.id = sequenciadorId();
         this.nome = nome;
         this.descricao = descricao;
         this.cargaHoraria = cargaHoraria;

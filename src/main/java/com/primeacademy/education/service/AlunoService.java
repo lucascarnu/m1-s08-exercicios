@@ -8,15 +8,15 @@ import java.util.List;
 @Service
 public class AlunoService {
 
-    private void validarCampoObrigatorio(Object valor, String mensagemErro) throws Exception {
-        if (valor == null) {
+    private void validarCampoObrigatorio(String valor, String mensagemErro) throws Exception {
+        if (valor == null || valor.isBlank()) {
             throw new Exception(mensagemErro);
         }
     }
 
     private boolean validar(Aluno aluno) throws Exception {
         validarCampoObrigatorio(aluno.getNome(), "Nome é obrigatório");
-        validarCampoObrigatorio(aluno.getDataNascimento(), "Data de nascimento é obrigatório");
+        validarCampoObrigatorio(aluno.getDataNascimento() != null ? aluno.getDataNascimento().toString() : null, "Data de nascimento é obrigatória");
 
         return true;
     }
